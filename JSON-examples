@@ -1,0 +1,71 @@
+Plane
+{
+	"Id" : 3,
+	"Name" : "Kondor",
+	"Type" : 2,
+	"Made" : "2018-06-02T05:16:43.336Z",
+	"Exploitation" : "2.00:00:00"
+}
+
+Flight
+{
+	"FlightNum" : 3,
+	"DeperturePlace" : "Kyiv",
+	"DepartureTime" : "2018-06-02T05:16:43.336Z",
+	"ArrivalPlace" : "Frankfurt",
+	"ArrivalTime" : "2018-06-02T05:16:43.336Z",
+	"TicketId" : [
+		5,
+		6
+		]
+}
+
+TakeOff
+{
+	"Id" : 3,
+	"FlightNum" : 3,
+	"Date" : "2018-06-02T05:16:43.336Z",
+	"CrewId" : 1,
+	"PlaneId" : 3
+}
+
+Ticket
+{
+	"Id" : 6,
+	"Price" : 600,
+	"FlightNum" : 3
+}
+
+Stewardess
+{
+	"Id" : 5,
+	"Name" : "Isa",
+	"Surname" : "Dorwart",
+	"Birth" : "2018-06-02T05:16:43.336Z"
+}
+
+Crew
+{
+	"Id" : 3,
+	"PilotId" : 3,
+	"StewardessIds" : [
+		3,
+		4]
+}
+
+Pilot
+{
+	"Id" : 3,
+	"Name" : "Dennison",
+	"Surname" : "Keegan",
+	"Birth" : "2018-06-02T05:16:43.336Z",
+	"Experience" : "2.00:00:00"
+}
+
+PlaneType
+{
+	"Id" : 2,
+	"Model" : "Boeing-777",
+	"Places" : 235,
+	"CarryCApacity" : 242000
+}
