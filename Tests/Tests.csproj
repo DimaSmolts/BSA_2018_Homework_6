@@ -16,9 +16,4 @@
     <ProjectReference Include="..\BSA_2018_Homework_4\BSA_2018_Homework_4.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CreateUpdateTests\CrewTest\" />
-    <Folder Include="CreateUpdateTests\TakeOffTest\" />
-  </ItemGroup>
-
 </Project>
