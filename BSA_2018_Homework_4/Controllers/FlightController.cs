@@ -21,16 +21,16 @@ namespace BSA_2018_Homework_4.Controllers
 
 		// GET: api/Flight
 		[HttpGet]
-		public IEnumerable<FlightDTO> Get()
+		public IActionResult Get()
 		{
 			IEnumerable<FlightDTO> temp = flightService.GetFlightCollection();
 
 			if (temp != null)
-				Response.StatusCode = 200;
+				return Ok(temp);
 			else
-				Response.StatusCode = 404;
+				return NotFound();
 
-			return temp;
+			//return temp;
 		}
 
 		// GET: api/Flight/5

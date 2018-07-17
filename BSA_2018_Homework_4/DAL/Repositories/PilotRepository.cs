@@ -54,6 +54,7 @@ namespace BSA_2018_Homework_4.DAL.Repositories
 		{
 			db.Pilot.Add(item);
 			db.SaveChanges();
+			//return item;
 		}
 
 		public void Update(int id, Pilot item)

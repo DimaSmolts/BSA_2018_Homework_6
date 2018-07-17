@@ -64,16 +64,12 @@ namespace BSA_2018_Homework_4
 
 			services.AddSingleton<DAL.IUnitOfWork, DAL.UnitOfWork>();
 
-
-
-
-
 			Mapper.Initialize(cfg =>
 			{
 				cfg.CreateMap<DAL.Models.Plane, DTOs.PlaneDTO>()
-				.ForMember(p => p.Type, dto => dto.Ignore());
+				.ForMember(p => p.Type, dto => dto.MapFrom(src => src.Type));
 				cfg.CreateMap<DTOs.PlaneDTO, DAL.Models.Plane>()
-				.ForMember(dto => dto.Type, p => p.Ignore());
+				.ForMember(dto => dto.Type, p => p.MapFrom(src => src.Type));
 
 				cfg.CreateMap<DAL.Models.Flight, DTOs.FlightDTO>()
 				.ForMember(f => f.FlightNum, dto => dto.MapFrom(src => src.FlightId));
@@ -81,24 +77,16 @@ namespace BSA_2018_Homework_4
 				.ForMember(dto => dto.FlightId, f => f.MapFrom(src => src.FlightNum));
 
 				cfg.CreateMap<DAL.Models.Ticket, DTOs.TicketDTO>()
-				.ForMember(t => t.FlightNum, dto => dto.Ignore());
+				.ForMember(t => t.FlightNum, dto => dto.MapFrom(src => src.FlightNum));
 				cfg.CreateMap<DTOs.TicketDTO, DAL.Models.Ticket>()
-				.ForMember(dto => dto.FlightNum, t => t.Ignore());
-
-
-
-
-
+				.ForMember(dto => dto.FlightNum, t => t.MapFrom(src => src.FlightNum));
 
 				cfg.CreateMap<DAL.Models.Crew, DTOs.CrewDTO>()
-				.ForMember(c => c.PilotId, dto => dto.MapFrom(src => src.PilotId.Id));
-				//.ForMember(c => c.StewardessIds, dto => dto.MapFrom());
-				cfg.CreateMap<DTOs.CrewDTO, DAL.Models.Crew>();
-
-
-
-
-
+				.ForMember(c => c.PilotId, dto => dto.MapFrom(src => src.PilotId))
+				.ForMember(c => c.StewardessIds, dto => dto.MapFrom(src => src.StewardessIds));
+				cfg.CreateMap<DTOs.CrewDTO, DAL.Models.Crew>()
+				.ForMember(dto => dto.StewardessIds, c => c.MapFrom(src => src.StewardessIds))
+				.ForMember(dto => dto.PilotId, c => c.MapFrom(src => src.PilotId));
 
 				cfg.CreateMap<DAL.Models.Pilot, DTOs.PilotDTO>();
 				cfg.CreateMap<DTOs.PilotDTO, DAL.Models.Pilot>();
@@ -107,13 +95,13 @@ namespace BSA_2018_Homework_4
 				cfg.CreateMap<DTOs.StewardessDTO, DAL.Models.Stewardess>();
 
 				cfg.CreateMap<DAL.Models.TakeOff, DTOs.TakeOffDTO>()
-				.ForMember(dto => dto.PlaneId, to => to.MapFrom(src => src.PlaneId.Id))
-				.ForMember(dto => dto.CrewId, to => to.MapFrom(src => src.CrewId.Id))
-				.ForMember(dto => dto.FlightNum, to => to.MapFrom(src => src.FlightNum.FlightId));
+				.ForMember(dto => dto.PlaneId, to => to.MapFrom(src => src.PlaneId))
+				.ForMember(dto => dto.CrewId, to => to.MapFrom(src => src.CrewId))
+				.ForMember(dto => dto.FlightNum, to => to.MapFrom(src => src.FlightNum));
 				cfg.CreateMap<DTOs.TakeOffDTO, DAL.Models.TakeOff>()
-				.ForMember(to => to.CrewId, dto => dto.Ignore())
-				.ForMember(to => to.PlaneId, dto => dto.Ignore())
-				.ForMember(to => to.FlightNum, dto => dto.Ignore());
+				.ForMember(to => to.CrewId, dto => dto.MapFrom(src => src.CrewId))
+				.ForMember(to => to.PlaneId, dto => dto.MapFrom(src => src.PlaneId))
+				.ForMember(to => to.FlightNum, dto => dto.MapFrom(src => src.FlightNum));
 
 
 				cfg.CreateMap<DAL.Models.PlaneType, DTOs.PlaneTypeDTO>();

@@ -9,7 +9,7 @@ namespace BSA_2018_Homework_4.DTOs
     {
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public int Type { get; set; }
+		public PlaneTypeDTO Type { get; set; }
 		public DateTime Made { get; set; }
 		public TimeSpan Exploitation { get; set; }
 	}

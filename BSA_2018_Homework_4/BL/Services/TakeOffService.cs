@@ -21,17 +21,21 @@ namespace BSA_2018_Homework_4.BL.Services
 
 		public void CreateTakeOff(TakeOffDTO item)
 		{
-			TakeOff temp = Mapper.Map<TakeOffDTO, TakeOff>(item);
-			temp.CrewId = IunitOfWork.CrewRepository.Get(item.CrewId);
+			//TakeOff temp = Mapper.Map<TakeOffDTO, TakeOff>(item);
+			//temp.CrewId = IunitOfWork.CrewRepository.Get(item.CrewId);
 
-			temp.FlightNum = IunitOfWork.FlightRepository.Get(item.FlightNum);
+			//temp.FlightNum = IunitOfWork.FlightRepository.Get(item.FlightNum);
 
-			temp.PlaneId = IunitOfWork.PlaneRepository.Get(item.PlaneId);
+			//temp.PlaneId = IunitOfWork.PlaneRepository.Get(item.PlaneId);
 
-			if(temp.CrewId != null && temp.PlaneId != null && temp.FlightNum != null)
-			{
-				IunitOfWork.TakeOffRepository.Create(temp);
-			}		
+			//if(temp.CrewId != null && temp.PlaneId != null && temp.FlightNum != null)
+			//{
+			//	IunitOfWork.TakeOffRepository.Create(temp);
+			//}		
+
+
+			IunitOfWork.TakeOffRepository.Create(Mapper.Map<TakeOffDTO, TakeOff>(item));
+
 		}
 
 		public void DeleteTakeOffById(int id)

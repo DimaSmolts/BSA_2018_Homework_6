@@ -22,26 +22,30 @@ namespace BSA_2018_Homework_4.BL.Services
 
 		public void CreateCrew(CrewDTO item)
 		{
-			Crew temp = new Crew();
-			temp.PilotId = IunitOfWork.PilotRepository.Get(item.PilotId);
+			//Crew temp = new Crew();
+			//temp.PilotId = IunitOfWork.PilotRepository.Get(item.PilotId);
 
-			List<Stewardess> tempS = IunitOfWork.StewardessRepository.GetAll();
-			List<Stewardess> selected = new List<Stewardess>();
-			foreach (Stewardess s in tempS)
-			{
-				foreach (int i in item.StewardessIds)
-				{
-					if (s.Id == i)
-						selected.Add(s);
-				}
+			//List<Stewardess> tempS = IunitOfWork.StewardessRepository.GetAll();
+			//List<Stewardess> selected = new List<Stewardess>();
+			//foreach (Stewardess s in tempS)
+			//{
+			//	foreach (int i in item.StewardessIds)
+			//	{
+			//		if (s.Id == i)
+			//			selected.Add(s);
+			//}
 
-			}
-			temp.StewardessIds = selected;
+			//}
+			//temp.StewardessIds = selected;
 
-			if (temp.StewardessIds.Count == item.StewardessIds.Count() && temp.PilotId != null)
-			{
-				IunitOfWork.CrewRepository.Create(temp);
-			}			
+			//if (temp.StewardessIds.Count == item.StewardessIds.Count() && temp.PilotId != null)
+			//{
+			//	IunitOfWork.CrewRepository.Create(temp);
+			//}			
+
+
+			IunitOfWork.CrewRepository.Create(Mapper.Map<CrewDTO,Crew>(item));
+
 		}
 
 		public void DeleteCrewById(int id)

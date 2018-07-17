@@ -43,7 +43,8 @@ namespace BSA_2018_Homework_4.DAL.Repositories
 		public Crew Get(int id)
 		{
 			return db.Crew
-				.Find(id)
+				.Include( t => t.StewardessIds)
+				.FirstOrDefault(t =>t.Id == id)
 				//.Include(t => t.StewardessIds)
 				//.Include(t => t.PilotId)
 				;

@@ -23,32 +23,36 @@ namespace BSA_2018_Homework_4.BL.Services
 
 		public List<PlaneDTO> GetPlaneCollection()
 		{
-			List<Plane> temp = IunitOfWork.PlaneRepository.GetAll();
-			List<PlaneDTO> selected = Mapper.Map<List<Plane>, List<PlaneDTO>>(temp);
+			//List<Plane> temp = IunitOfWork.PlaneRepository.GetAll();
+			//List<PlaneDTO> selected = Mapper.Map<List<Plane>, List<PlaneDTO>>(temp);
 
-			foreach(PlaneDTO p in selected)
-			{
-				p.Type = (from x in temp
-						  where x.Id == p.Id
-						  select x.Type.Id).First();
-			}
+			//foreach(PlaneDTO p in selected)
+			//{
+			//	p.Type = (from x in temp
+			//			  where x.Id == p.Id
+			//			  select x.Type.Id).First();
+			//}
 
-			return selected;
+			//return selected;
+
+			return Mapper.Map<List<Plane>, List<PlaneDTO>>(IunitOfWork.PlaneRepository.GetAll());
+
 		}
 		public PlaneDTO GetPlaneById(int id)
 		{
-			Plane temp = IunitOfWork.PlaneRepository.Get(id);
-			PlaneDTO selected = Mapper.Map<Plane, PlaneDTO>(temp);
+			//Plane temp = IunitOfWork.PlaneRepository.Get(id);
+			//PlaneDTO selected = Mapper.Map<Plane, PlaneDTO>(temp);
 
-			if(temp != null)
-			{
-				selected.Type = temp.Type.Id;
-				return selected;
-			}
-			else
-			{
-				throw new Exception();
-			}
+			//if(temp != null)
+			//{
+			//	selected.Type = temp.Type.Id;
+			//	return selected;
+			//}
+			//else
+			//{
+			//	throw new Exception();
+			//}
+			return Mapper.Map<Plane, PlaneDTO>(IunitOfWork.PlaneRepository.Get(id));
 		}
 		public void DeletePlaneById(int id)
 		{
@@ -56,17 +60,19 @@ namespace BSA_2018_Homework_4.BL.Services
 		}
 		public void CreatePlane(PlaneDTO item)
 		{
-			Plane temp = Mapper.Map<PlaneDTO, Plane>(item);
-			temp.Type = IunitOfWork.PlaneTypeRepository.Get(item.Type);
-			if(temp.Type != null)
-			{
-				IunitOfWork.PlaneRepository.Create(temp);
-			}
-			else
-			{
-				throw new Exception();
-			}
-			
+			//Plane temp = Mapper.Map<PlaneDTO, Plane>(item);
+			//temp.Type = IunitOfWork.PlaneTypeRepository.Get(item.Type);
+			//if(temp.Type != null)
+			//{
+			//	IunitOfWork.PlaneRepository.Create(temp);
+			//}
+			//else
+			//{
+			//	throw new Exception();
+			//}
+
+			IunitOfWork.PlaneRepository.Create(Mapper.Map<PlaneDTO, Plane>(item));
+
 		}
 		public void UpdatePlane(int id, PlaneDTO item)
 		{
